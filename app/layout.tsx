@@ -37,6 +37,20 @@ export const metadata: Metadata = {
   },
 };
 
+// Runs synchronously before paint — sets the data-theme attribute from
+// localStorage so the page never flashes the wrong theme.
+const themeInitScript = `
+(function(){
+  try {
+    var t = localStorage.getItem('theme');
+    if (t !== 'light' && t !== 'dark') t = 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+})();
+`;
+
 export default function RootLayout({
   children,
 }: {
@@ -46,8 +60,12 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${rift.variable} ${bahnschrift.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full bg-black text-white">
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
+      <body className="min-h-full bg-bg text-fg">
         <CustomCursor />
         {children}
       </body>

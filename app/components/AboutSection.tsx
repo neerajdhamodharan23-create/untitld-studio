@@ -10,7 +10,6 @@ export default function AboutSection() {
   return (
     <section id="studio" className="px-4 sm:px-6 lg:px-10 py-16 sm:py-20 lg:py-28">
       <div className="max-w-7xl mx-auto">
-        {/* Eyebrow */}
         <div className="flex items-center gap-2 mb-5">
           <span className="pill-dot bg-lime" />
           <p className="text-[11px] tracking-[0.22em] uppercase text-lime font-body">
@@ -18,7 +17,7 @@ export default function AboutSection() {
           </p>
         </div>
 
-        <h2 className="font-display uppercase tracking-wide text-[clamp(2.4rem,5vw,4.4rem)] leading-[0.95] text-white mb-14 max-w-4xl">
+        <h2 className="font-display uppercase tracking-wide text-[clamp(2.4rem,5vw,4.4rem)] leading-[0.95] text-fg mb-14 max-w-4xl">
           UNTITLD helps creatives grow,
           <br />
           and we&rsquo;ve helped many{" "}
@@ -35,17 +34,9 @@ export default function AboutSection() {
           do it with <span className="text-lime">confidence.</span>
         </h2>
 
-        {/* Image card with stats overlay */}
-        <div className="relative rounded-[2rem] overflow-hidden mb-10">
-          {/* Stylized background instead of photo */}
-          <div
-            className="relative h-[360px] sm:h-[420px] lg:h-[480px]"
-            style={{
-              background:
-                "radial-gradient(circle at 80% 20%, rgba(204,255,0,0.10), transparent 50%), radial-gradient(circle at 25% 90%, rgba(204,255,0,0.06), transparent 50%), linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 50%, #080808 100%)",
-            }}
-          >
-            {/* Grid texture */}
+        {/* Image card with stats overlay — always dark */}
+        <div className="relative rounded-[2rem] overflow-hidden mb-10 media-card media-card-about">
+          <div className="relative h-[360px] sm:h-[420px] lg:h-[480px]">
             <div
               className="absolute inset-0 opacity-[0.05]"
               style={{
@@ -55,9 +46,6 @@ export default function AboutSection() {
               }}
             />
 
-            {/* Centered slash mark — viewBox extended on the right/bottom so the
-                visual centroid of the slash + dot composition lands at the
-                geometric center of the SVG, not the polygon centroid alone. */}
             <div className="absolute inset-0 flex items-center justify-center">
               <svg
                 viewBox="-1.4 -2 28.83 36"
@@ -70,7 +58,6 @@ export default function AboutSection() {
               </svg>
             </div>
 
-            {/* Stats bar at bottom */}
             <div className="absolute bottom-0 left-0 right-0 bg-black/70 border-t border-white/10">
               <div className="grid grid-cols-3 divide-x divide-white/10">
                 {stats.map(({ value, label }) => (
@@ -88,21 +75,20 @@ export default function AboutSection() {
           </div>
         </div>
 
-        {/* Two-column copy + button */}
         <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr_auto] gap-8 items-end">
           <a href="#contact" className="pill pill-secondary border-lime/30 text-lime">
             About Us
             <span className="pill-dot bg-lime" />
           </a>
           <div className="space-y-4 max-w-3xl">
-            <p className="text-[15px] text-white/55 font-body font-light leading-relaxed">
+            <p className="text-[15px] text-fg/65 font-body font-light leading-relaxed">
               UNTITLD isn&rsquo;t just a design studio — it&rsquo;s a
               launchpad for bold ideas and brave brands. Whether you&rsquo;re
               just starting or scaling, we give you the structure and
               language you need to show your best work and tell your story
               with impact.
             </p>
-            <p className="text-[15px] text-white/55 font-body font-light leading-relaxed">
+            <p className="text-[15px] text-fg/65 font-body font-light leading-relaxed">
               Trusted by independent creatives and growing teams alike, our
               process makes it easier to build a lasting presence — both
               online and off. We focus on what matters: your vision, your
@@ -111,7 +97,7 @@ export default function AboutSection() {
           </div>
           <a
             href="#work"
-            className="hidden lg:flex items-center gap-2 text-[12px] tracking-widest uppercase text-white/60 hover:text-lime transition-colors font-body whitespace-nowrap"
+            className="hidden lg:flex items-center gap-2 text-[12px] tracking-widest uppercase text-fg/65 hover:text-lime transition-colors font-body whitespace-nowrap"
           >
             View Work
             <ArrowUpRight size={14} />

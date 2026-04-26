@@ -26,7 +26,7 @@ export default function ServicesSection() {
           </p>
         </div>
 
-        <h2 className="font-display uppercase tracking-wide text-[clamp(2.6rem,6vw,5rem)] leading-[0.95] text-white mb-14 max-w-4xl">
+        <h2 className="font-display uppercase tracking-wide text-[clamp(2.6rem,6vw,5rem)] leading-[0.95] text-fg mb-14 max-w-4xl">
           What we do <span className="text-lime">best.</span>
         </h2>
 
@@ -89,10 +89,10 @@ function ServiceCard({
         <Icon size={20} weight="light" className="text-lime" />
       </div>
 
-      <h3 className="font-display text-3xl lg:text-4xl tracking-wide uppercase text-white mb-3">
+      <h3 className="font-display text-3xl lg:text-4xl tracking-wide uppercase text-fg mb-3">
         {title}
       </h3>
-      <p className="text-sm text-white/50 font-body font-light leading-relaxed mb-8 max-w-md">
+      <p className="text-sm text-fg/55 font-body font-light leading-relaxed mb-8 max-w-md">
         {description}
       </p>
 
@@ -100,7 +100,7 @@ function ServiceCard({
         {services.map((s) => (
           <li
             key={s}
-            className="flex items-center gap-3 text-sm text-white/65 font-body font-light"
+            className="flex items-center gap-3 text-sm text-fg/70 font-body font-light"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-lime flex-shrink-0" />
             {s}
@@ -108,9 +108,9 @@ function ServiceCard({
         ))}
       </ul>
 
-      <div className="flex items-end justify-between pt-6 border-t border-white/10">
+      <div className="flex items-end justify-between pt-6 border-t border-rule">
         <div>
-          <p className="text-[10px] tracking-widest uppercase text-white/35 font-body mb-1">
+          <p className="text-[10px] tracking-widest uppercase text-fg/45 font-body mb-1">
             Starting from
           </p>
           <p className="font-display text-3xl tracking-wide text-lime uppercase">

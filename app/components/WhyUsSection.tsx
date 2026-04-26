@@ -25,7 +25,6 @@ export default function WhyUsSection() {
   return (
     <section id="why" className="px-4 sm:px-6 lg:px-10 py-16 sm:py-20 lg:py-28">
       <div className="max-w-7xl mx-auto">
-        {/* Eyebrow */}
         <div className="flex items-center justify-center gap-2 mb-5">
           <span className="pill-dot bg-lime" />
           <p className="text-[11px] tracking-[0.22em] uppercase text-lime font-body">
@@ -33,19 +32,17 @@ export default function WhyUsSection() {
           </p>
         </div>
 
-        {/* Heading */}
-        <h2 className="font-display uppercase tracking-wide text-[clamp(2.6rem,6vw,5rem)] leading-[0.92] text-white text-center mb-5">
+        <h2 className="font-display uppercase tracking-wide text-[clamp(2.6rem,6vw,5rem)] leading-[0.92] text-fg text-center mb-5">
           Why studios choose
           <br />
           <span className="text-lime">UNTITLD.</span>
         </h2>
 
-        <p className="text-base text-white/45 font-body font-light text-center max-w-xl mx-auto mb-14 leading-relaxed">
+        <p className="text-base text-fg/55 font-body font-light text-center max-w-xl mx-auto mb-14 leading-relaxed">
           A handful of reasons our clients keep coming back — and keep
           recommending us to their network.
         </p>
 
-        {/* 3-column grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
           {features.map(({ icon: Icon, title, description }) => (
             <div
@@ -59,10 +56,10 @@ export default function WhyUsSection() {
                   className="text-lime group-hover:text-black transition-colors duration-500"
                 />
               </div>
-              <h3 className="font-display text-2xl tracking-wide uppercase text-white mb-3">
+              <h3 className="font-display text-2xl tracking-wide uppercase text-fg mb-3">
                 {title}
               </h3>
-              <p className="text-sm text-white/45 font-body font-light leading-relaxed">
+              <p className="text-sm text-fg/55 font-body font-light leading-relaxed">
                 {description}
               </p>
             </div>

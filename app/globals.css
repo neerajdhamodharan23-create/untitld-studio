@@ -1,46 +1,80 @@
 @import "tailwindcss";
 
+/* ============== THEME TOKENS ============== */
+/* Default = dark. Light variant overrides under [data-theme="light"]. */
 :root {
+  /* Page surfaces */
+  --bg: #050505;
+  --fg: #ffffff;
+  --surface: #0a0a0a;
+  --surface-2: #111111;
+
+  /* Lines */
+  --rule: rgba(255, 255, 255, 0.10);
+  --rule-strong: rgba(255, 255, 255, 0.18);
+
+  /* Brand */
   --lime: #ccff00;
-  --lime-dim: rgba(204, 255, 0, 0.1);
+  --lime-dim: rgba(204, 255, 0, 0.10);
   --lime-soft: rgba(204, 255, 0, 0.18);
   --lime-border: rgba(204, 255, 0, 0.25);
-  --white: #ffffff;
-  --white-dim: rgba(255, 255, 255, 0.45);
-  --white-dimmer: rgba(255, 255, 255, 0.1);
-  --white-dimmest: rgba(255, 255, 255, 0.06);
-  --black: #000000;
-  --surface: #0a0a0a;
-  --surface-raised: #111111;
-  --surface-card: #141414;
+
+  /* Hero / About / Mobile drawer (always dark, regardless of theme — they
+     read as "media cards" the way Bravana's hero photo does) */
+  --hero-grad:
+    radial-gradient(ellipse 600px 400px at 0% 100%, rgba(204,255,0,0.10), transparent 70%),
+    linear-gradient(135deg, #000 0%, #0c0c0c 50%, #171717 100%);
+  --about-grad:
+    radial-gradient(circle at 80% 20%, rgba(204,255,0,0.10), transparent 50%),
+    radial-gradient(circle at 25% 90%, rgba(204,255,0,0.06), transparent 50%),
+    linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 50%, #080808 100%);
+
+  /* Body ambient glow */
+  --body-glow: radial-gradient(at 0% 0%, rgba(204,255,0,0.06), transparent 35%);
+
+  /* Form input background */
+  --input-bg: #050505;
+  --input-border: rgba(255,255,255,0.08);
+}
+
+[data-theme="light"] {
+  --bg: #f5f3ef;
+  --fg: #0a0a0a;
+  --surface: #ffffff;
+  --surface-2: #ffffff;
+  --rule: rgba(10, 10, 10, 0.08);
+  --rule-strong: rgba(10, 10, 10, 0.18);
+
+  --body-glow: radial-gradient(at 0% 0%, rgba(204,255,0,0.18), transparent 35%);
+
+  --input-bg: #ffffff;
+  --input-border: rgba(10,10,10,0.10);
 }
 
 @theme inline {
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
   --color-lime: var(--lime);
   --color-lime-dim: var(--lime-dim);
   --color-lime-soft: var(--lime-soft);
   --color-lime-border: var(--lime-border);
-  --color-surface: var(--surface);
-  --color-surface-raised: var(--surface-raised);
-  --color-surface-card: var(--surface-card);
-  --color-white-dim: var(--white-dim);
-  --color-white-dimmer: var(--white-dimmer);
-  --color-white-dimmest: var(--white-dimmest);
 }
 
+/* ============== BASE ============== */
 *, *::before, *::after { box-sizing: border-box; }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
-  background: #050505;
-  color: #ffffff;
+  background-color: var(--bg);
+  color: var(--fg);
   font-family: var(--font-bahnschrift), "Bahnschrift", "DIN Pro", system-ui, sans-serif;
-  /* Static lime ambience as a single subtle gradient — no fixed attachment for perf */
-  background-image:
-    radial-gradient(at 0% 0%, rgba(204, 255, 0, 0.06), transparent 35%);
+  background-image: var(--body-glow);
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -49,9 +83,9 @@ h1, h2, h3, h4, h5, h6 {
   font-style: italic;
 }
 
-::selection { background-color: var(--lime); color: #000000; }
+::selection { background-color: var(--lime); color: #000; }
 
-/* Hide native cursor when custom cursor is active (desktop only) */
+/* Custom cursor — desktop only */
 @media (hover: hover) and (pointer: fine) {
   html.cursor-hidden,
   html.cursor-hidden *,
@@ -63,6 +97,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* ============== UTILITIES ============== */
 @keyframes marquee {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
@@ -78,7 +113,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-bahnschrift), "Bahnschrift", system-ui, sans-serif;
 }
 
-/* Pill button — every instance shares the same metrics */
+/* ============== PILL BUTTONS ============== */
 .pill {
   display: inline-flex;
   align-items: center;
@@ -101,12 +136,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 .pill-primary { background-color: var(--lime); color: #000; }
 .pill-primary:hover { background-color: #d8ff33; }
-.pill-secondary { background-color: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.18); }
+.pill-secondary { background-color: transparent; color: var(--fg); border: 1px solid var(--rule-strong); }
 .pill-secondary:hover { border-color: var(--lime); color: var(--lime); }
-.pill-dark { background-color: #000; color: #fff; border: 1px solid #000; }
-.pill-dark:hover { background-color: #1a1a1a; }
+.pill-dark { background-color: var(--fg); color: var(--bg); border: 1px solid var(--fg); }
+.pill-dark:hover { opacity: 0.85; }
 
-/* Smaller pill modifier for inline badges */
 .pill-sm {
   height: 1.75rem;
   padding-inline: 0.85rem;
@@ -114,9 +148,6 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.08em;
   gap: 0.45rem;
 }
-
-/* Dot is sized relative to the cap height of the pill text — translateY -1px nudges
-   the geometric center up to match the visual cap-height center of Bahnschrift caps */
 .pill-dot {
   width: 0.45rem;
   height: 0.45rem;
@@ -125,22 +156,30 @@ h1, h2, h3, h4, h5, h6 {
   flex-shrink: 0;
   transform: translateY(-1px);
 }
-.pill-sm .pill-dot {
-  width: 0.36rem;
-  height: 0.36rem;
-}
+.pill-sm .pill-dot { width: 0.36rem; height: 0.36rem; }
 
+/* ============== CARDS ============== */
 .card {
   border-radius: 1.5rem;
   background-color: var(--surface);
 }
 .card-raised {
   border-radius: 1.5rem;
-  background-color: var(--surface-raised);
-  border: 1px solid var(--white-dimmer);
+  background-color: var(--surface-2);
+  border: 1px solid var(--rule);
 }
 
-/* Reduced motion respect */
+/* ============== ALWAYS-DARK MEDIA CARDS ============== */
+/* Hero, About, and project tiles stay dark in both themes — they read as
+   image surfaces. Their text remains white. */
+.media-card {
+  color: #ffffff;
+  background: var(--hero-grad);
+  border-radius: 1.5rem;
+}
+.media-card-about { background: var(--about-grad); }
+
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

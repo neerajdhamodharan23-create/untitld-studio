@@ -136,15 +136,15 @@ export default function WorkSection() {
                 Selected Works
               </p>
             </div>
-            <h2 className="font-display uppercase tracking-wide text-[clamp(2.6rem,7vw,6rem)] leading-[0.92] text-white">
+            <h2 className="font-display uppercase tracking-wide text-[clamp(2.6rem,7vw,6rem)] leading-[0.92] text-fg">
               Works.
             </h2>
-            <p className="text-sm text-white/45 font-body font-light mt-3 max-w-md">
+            <p className="text-sm text-fg/55 font-body font-light mt-3 max-w-md">
               A curated collection of bold brands and websites — built to
               inspire, connect, and perform.
             </p>
           </div>
-          <p className="text-[11px] tracking-widest uppercase text-white/35 font-body">
+          <p className="text-[11px] tracking-widest uppercase text-fg/45 font-body">
             2020 — 2025
           </p>
         </div>

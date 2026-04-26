@@ -1,9 +1,9 @@
 export default function HeroSection() {
   return (
     <section id="hero" className="px-4 sm:px-6 lg:px-10 pt-1 pb-4 lg:pb-6">
-      {/* Hero card */}
-      <div className="relative overflow-hidden rounded-[1.5rem] lg:rounded-[2rem] min-h-[78dvh] flex flex-col bg-gradient-to-br from-black via-[#0c0c0c] to-[#171717]">
-        {/* Decorative slash — smaller, no blur */}
+      {/* Hero card — always dark (media surface) */}
+      <div className="media-card relative overflow-hidden rounded-[1.5rem] lg:rounded-[2rem] min-h-[78dvh] flex flex-col">
+        {/* Decorative slash — small, no blur */}
         <div className="absolute -right-10 top-12 lg:right-10 lg:top-10 opacity-[0.05] pointer-events-none select-none">
           <svg viewBox="0 0 26.03 32" className="w-[320px] lg:w-[460px] h-auto" fill="#ccff00">
             <polygon points="6.99 32 0 32 19.04 0 26.03 0 6.99 32" />
@@ -11,16 +11,7 @@ export default function HeroSection() {
           </svg>
         </div>
 
-        {/* Single soft lime corner glow — radial gradient is far cheaper than blur() */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 600px 400px at 0% 100%, rgba(204,255,0,0.10), transparent 70%)",
-          }}
-        />
-
-        {/* Top-right description block */}
+        {/* Top-right description */}
         <div className="relative z-10 self-end mt-10 lg:mt-16 mr-5 sm:mr-8 lg:mr-14 max-w-md fade-in delay-100">
           <p className="text-sm lg:text-base text-white/70 font-body font-light leading-relaxed text-right mb-5 sm:mb-6">
             UNTITLD helps you shape brand identities and digital presences,

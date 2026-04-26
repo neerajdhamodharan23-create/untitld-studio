@@ -33,7 +33,7 @@ export default function ProcessSection() {
           </p>
         </div>
 
-        <h2 className="font-display uppercase tracking-wide text-[clamp(2.6rem,6vw,5rem)] leading-[0.95] text-white mb-14 max-w-3xl">
+        <h2 className="font-display uppercase tracking-wide text-[clamp(2.6rem,6vw,5rem)] leading-[0.95] text-fg mb-14 max-w-3xl">
           How we <span className="text-lime">build.</span>
         </h2>
 
@@ -47,10 +47,10 @@ export default function ProcessSection() {
               <p className="font-display text-5xl tracking-wide text-lime/40 mb-8">
                 {step.number}
               </p>
-              <h3 className="font-display text-xl lg:text-2xl tracking-wide text-white uppercase mb-3">
+              <h3 className="font-display text-xl lg:text-2xl tracking-wide text-fg uppercase mb-3">
                 {step.name}
               </h3>
-              <p className="text-[13px] text-white/45 font-body font-light leading-relaxed">
+              <p className="text-[13px] text-fg/55 font-body font-light leading-relaxed">
                 {step.description}
               </p>
             </div>
@@ -59,13 +59,13 @@ export default function ProcessSection() {
 
         {/* Pull quote */}
         <div className="mt-12 sm:mt-14 card-raised p-7 sm:p-8 lg:p-12 border-lime/20">
-          <p className="font-body text-[clamp(1.2rem,2.4vw,1.7rem)] font-light text-white/75 max-w-3xl leading-relaxed italic">
+          <p className="font-body text-[clamp(1.2rem,2.4vw,1.7rem)] font-light text-fg/80 max-w-3xl leading-relaxed italic">
             &ldquo;Good design doesn&rsquo;t announce itself. It just makes
             everything feel inevitable.&rdquo;
           </p>
           <div className="flex items-center gap-3 mt-6">
             <span className="pill-dot bg-lime" />
-            <p className="text-[11px] tracking-widest uppercase text-white/40 font-body">
+            <p className="text-[11px] tracking-widest uppercase text-fg/55 font-body">
               UNTITLD Design Principle
             </p>
           </div>
