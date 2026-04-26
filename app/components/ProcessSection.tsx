@@ -2,66 +2,74 @@ const steps = [
   {
     number: "01",
     name: "Discovery",
-    description:
-      "We begin every engagement with deep listening — understanding your market, audience, competitors, and ambition before a single mark is made.",
+    description: "Deep listening — your market, audience, and ambition.",
   },
   {
     number: "02",
     name: "Strategy",
-    description:
-      "Positioning, naming direction, and visual territory are defined. This phase creates the strategic foundation every design decision is grounded in.",
+    description: "Positioning and visual territory are defined and aligned.",
   },
   {
     number: "03",
     name: "Design",
-    description:
-      "With strategy as the compass, we develop identity systems and digital experiences with craft, precision, and obsessive attention to detail.",
+    description: "Identity systems built with craft and obsessive precision.",
   },
   {
     number: "04",
     name: "Delivery",
-    description:
-      "Complete brand guidelines, asset libraries, and production-ready files — everything needed to deploy your new identity with confidence.",
+    description: "Complete guidelines, assets, and production-ready files.",
   },
 ];
 
 export default function ProcessSection() {
   return (
-    <section id="process" className="border-b border-white-dimmer">
-      <div className="flex items-center gap-4 px-8 lg:px-14 py-6 border-b border-white-dimmer">
-        <span className="text-[10px] tracking-[0.2em] uppercase text-white/30 font-body">
-          04 / Process
-        </span>
-      </div>
+    <section id="process" className="px-6 lg:px-10 py-20 lg:py-28">
+      <div className="max-w-7xl mx-auto">
+        {/* Eyebrow */}
+        <div className="flex items-center gap-2 mb-5">
+          <span className="pill-dot bg-lime" />
+          <p className="text-[11px] tracking-[0.22em] uppercase text-lime font-body">
+            Process
+          </p>
+        </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-        {steps.map((step, i) => (
-          <div
-            key={step.number}
-            className={`px-8 lg:px-10 py-12 ${
-              i < steps.length - 1
-                ? "border-b lg:border-b-0 lg:border-r border-white-dimmer"
-                : ""
-            }`}
-          >
-            <p className="font-display text-5xl text-lime/30 mb-6 tracking-wide">
-              {step.number}
-            </p>
-            <h3 className="font-display text-2xl tracking-wide text-white uppercase mb-4">
-              {step.name}
-            </h3>
-            <p className="text-sm text-white/40 leading-relaxed font-body font-light">
-              {step.description}
+        <h2 className="font-display uppercase tracking-wide text-[clamp(2.6rem,6vw,5rem)] leading-[0.95] text-white mb-14 max-w-3xl">
+          How we <span className="text-lime">build.</span>
+        </h2>
+
+        {/* Step cards */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {steps.map((step) => (
+            <div
+              key={step.number}
+              className="card-raised p-7 hover:border-lime/30 transition-colors duration-500"
+            >
+              <p className="font-display text-5xl tracking-wide text-lime/40 mb-8">
+                {step.number}
+              </p>
+              <h3 className="font-display text-xl lg:text-2xl tracking-wide text-white uppercase mb-3">
+                {step.name}
+              </h3>
+              <p className="text-[13px] text-white/45 font-body font-light leading-relaxed">
+                {step.description}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Pull quote */}
+        <div className="mt-14 card-raised p-8 lg:p-12 border-lime/20">
+          <p className="font-body text-[clamp(1.2rem,2.4vw,1.7rem)] font-light text-white/75 max-w-3xl leading-relaxed italic">
+            &ldquo;Good design doesn&rsquo;t announce itself. It just makes
+            everything feel inevitable.&rdquo;
+          </p>
+          <div className="flex items-center gap-3 mt-6">
+            <span className="pill-dot bg-lime" />
+            <p className="text-[11px] tracking-widest uppercase text-white/40 font-body">
+              UNTITLD Design Principle
             </p>
           </div>
-        ))}
-      </div>
-
-      <div className="px-8 lg:px-14 py-12 border-t border-white-dimmer bg-surface">
-        <p className="text-[clamp(1.1rem,2.8vw,1.8rem)] font-body font-light text-white/35 max-w-3xl leading-relaxed italic">
-          &ldquo;Good design doesn&rsquo;t announce itself. It just makes
-          everything feel inevitable.&rdquo;
-        </p>
+        </div>
       </div>
     </section>
   );

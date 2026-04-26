@@ -1,23 +1,25 @@
 import Nav from "./components/Nav";
 import HeroSection from "./components/HeroSection";
-import MarqueeStrip from "./components/MarqueeStrip";
-import ServicesSection from "./components/ServicesSection";
+import WhyUsSection from "./components/WhyUsSection";
+import AboutSection from "./components/AboutSection";
 import WorkSection from "./components/WorkSection";
+import ServicesSection from "./components/ServicesSection";
 import ProcessSection from "./components/ProcessSection";
-import StudioSection from "./components/StudioSection";
 import ContactSection from "./components/ContactSection";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
     <main>
       <Nav />
       <HeroSection />
-      <MarqueeStrip />
+      <WhyUsSection />
+      <AboutSection />
       <WorkSection />
       <ServicesSection />
       <ProcessSection />
-      <StudioSection />
       <ContactSection />
+      <Footer />
     </main>
   );
 }
