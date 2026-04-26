@@ -71,7 +71,7 @@ function ProjectCard({ project }: { project: Project }) {
         <div className="relative z-10 flex items-start justify-between">
           {project.featured ? (
             <span
-              className={`pill text-[10px] py-1.5 px-3 ${
+              className={`pill pill-sm ${
                 isLight
                   ? "bg-black text-white"
                   : "bg-lime/15 text-lime border border-lime/30"

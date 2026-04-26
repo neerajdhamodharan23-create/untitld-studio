@@ -55,12 +55,15 @@ export default function AboutSection() {
               }}
             />
 
-            {/* Centered slash mark */}
+            {/* Centered slash mark — viewBox extended on the right/bottom so the
+                visual centroid of the slash + dot composition lands at the
+                geometric center of the SVG, not the polygon centroid alone. */}
             <div className="absolute inset-0 flex items-center justify-center">
               <svg
-                viewBox="0 0 26.03 32"
+                viewBox="-1.4 -2 28.83 36"
                 fill="#ccff00"
                 className="w-32 h-40 lg:w-44 lg:h-56 opacity-90"
+                preserveAspectRatio="xMidYMid meet"
               >
                 <polygon points="6.99 32 0 32 19.04 0 26.03 0 6.99 32" />
                 <path d="M20.15,32c-1.02,0-1.9-.36-2.63-1.09-.73-.73-1.09-1.61-1.09-2.63s.36-1.88,1.09-2.61c.73-.72,1.61-1.09,2.63-1.09s1.86.36,2.61,1.09,1.12,1.59,1.12,2.61c0,.68-.17,1.31-.52,1.87-.35.56-.8,1.01-1.36,1.35-.56.34-1.17.5-1.85.5Z" />

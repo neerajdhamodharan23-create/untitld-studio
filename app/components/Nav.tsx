@@ -46,7 +46,7 @@ export default function Nav() {
           {/* Logo */}
           <a href="#" aria-label="UNTITLD" className="flex items-center shrink-0">
             <Image
-              src="/logo-lime.svg"
+              src="/logo-white.svg"
               alt="UNTITLD"
               width={110}
               height={18}
@@ -92,7 +92,7 @@ export default function Nav() {
         <div className="fixed inset-0 z-[60] md:hidden bg-black/95 backdrop-blur-lg flex flex-col">
           <div className="flex items-center justify-between px-6 py-5">
             <Image
-              src="/logo-lime.svg"
+              src="/logo-white.svg"
               alt="UNTITLD"
               width={110}
               height={18}
@@ -124,7 +124,8 @@ export default function Nav() {
             <a
               href="#contact"
               onClick={() => setOpen(false)}
-              className="pill pill-primary w-full justify-center py-4 text-sm"
+              className="pill pill-primary w-full"
+              style={{ height: "3rem" }}
             >
               Start a Project
               <span className="pill-dot bg-black" />

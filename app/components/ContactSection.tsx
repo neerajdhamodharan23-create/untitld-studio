@@ -121,7 +121,11 @@ export default function ContactSection() {
                   />
                 </Field>
 
-                <button type="submit" className="pill pill-primary w-full justify-center py-4">
+                <button
+                  type="submit"
+                  className="pill pill-primary w-full"
+                  style={{ height: "3rem" }}
+                >
                   Submit
                   <span className="pill-dot bg-black" />
                 </button>
