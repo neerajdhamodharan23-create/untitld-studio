@@ -16,7 +16,7 @@ const web = [
 
 export default function ServicesSection() {
   return (
-    <section id="services" className="px-6 lg:px-10 py-20 lg:py-28">
+    <section id="services" className="px-4 sm:px-6 lg:px-10 py-16 sm:py-20 lg:py-28">
       <div className="max-w-7xl mx-auto">
         {/* Eyebrow */}
         <div className="flex items-center gap-2 mb-5">
@@ -30,7 +30,7 @@ export default function ServicesSection() {
           What we do <span className="text-lime">best.</span>
         </h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5">
           {/* Brand Identity */}
           <ServiceCard
             icon={Fingerprint}
@@ -72,7 +72,7 @@ function ServiceCard({
 }) {
   return (
     <div
-      className={`card-raised p-8 lg:p-10 relative overflow-hidden ${
+      className={`card-raised p-7 sm:p-8 lg:p-10 relative overflow-hidden ${
         featured ? "border-lime/30" : ""
       }`}
     >

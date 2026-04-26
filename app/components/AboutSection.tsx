@@ -8,7 +8,7 @@ const stats = [
 
 export default function AboutSection() {
   return (
-    <section id="studio" className="px-6 lg:px-10 py-20 lg:py-28">
+    <section id="studio" className="px-4 sm:px-6 lg:px-10 py-16 sm:py-20 lg:py-28">
       <div className="max-w-7xl mx-auto">
         {/* Eyebrow */}
         <div className="flex items-center gap-2 mb-5">
@@ -38,19 +38,22 @@ export default function AboutSection() {
         {/* Image card with stats overlay */}
         <div className="relative rounded-[2rem] overflow-hidden mb-10">
           {/* Stylized background instead of photo */}
-          <div className="relative h-[420px] lg:h-[480px] bg-gradient-to-br from-[#0d0d0d] via-[#1a1a1a] to-[#080808]">
+          <div
+            className="relative h-[360px] sm:h-[420px] lg:h-[480px]"
+            style={{
+              background:
+                "radial-gradient(circle at 80% 20%, rgba(204,255,0,0.10), transparent 50%), radial-gradient(circle at 25% 90%, rgba(204,255,0,0.06), transparent 50%), linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 50%, #080808 100%)",
+            }}
+          >
             {/* Grid texture */}
             <div
-              className="absolute inset-0 opacity-[0.06]"
+              className="absolute inset-0 opacity-[0.05]"
               style={{
                 backgroundImage:
                   "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)",
                 backgroundSize: "60px 60px",
               }}
             />
-            {/* Lime ambient glow */}
-            <div className="absolute right-0 top-0 w-[400px] h-[400px] rounded-full bg-lime/[0.12] blur-[100px]" />
-            <div className="absolute left-1/4 bottom-0 w-[300px] h-[300px] rounded-full bg-lime/[0.06] blur-[80px]" />
 
             {/* Centered slash mark */}
             <div className="absolute inset-0 flex items-center justify-center">
@@ -65,14 +68,14 @@ export default function AboutSection() {
             </div>
 
             {/* Stats bar at bottom */}
-            <div className="absolute bottom-0 left-0 right-0 bg-black/60 backdrop-blur-sm border-t border-white/10">
+            <div className="absolute bottom-0 left-0 right-0 bg-black/70 border-t border-white/10">
               <div className="grid grid-cols-3 divide-x divide-white/10">
                 {stats.map(({ value, label }) => (
-                  <div key={label} className="px-6 lg:px-10 py-7 text-center">
-                    <p className="font-display text-3xl lg:text-5xl tracking-wide text-lime uppercase mb-1">
+                  <div key={label} className="px-3 sm:px-6 lg:px-10 py-5 sm:py-7 text-center">
+                    <p className="font-display text-2xl sm:text-3xl lg:text-5xl tracking-wide text-lime uppercase mb-1">
                       {value}
                     </p>
-                    <p className="text-[11px] tracking-widest uppercase text-white/40 font-body font-light">
+                    <p className="text-[9px] sm:text-[11px] tracking-widest uppercase text-white/40 font-body font-light leading-tight">
                       {label}
                     </p>
                   </div>

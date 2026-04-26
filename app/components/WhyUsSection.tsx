@@ -23,7 +23,7 @@ const features = [
 
 export default function WhyUsSection() {
   return (
-    <section id="why" className="px-6 lg:px-10 py-20 lg:py-28">
+    <section id="why" className="px-4 sm:px-6 lg:px-10 py-16 sm:py-20 lg:py-28">
       <div className="max-w-7xl mx-auto">
         {/* Eyebrow */}
         <div className="flex items-center justify-center gap-2 mb-5">
@@ -46,11 +46,11 @@ export default function WhyUsSection() {
         </p>
 
         {/* 3-column grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
           {features.map(({ icon: Icon, title, description }) => (
             <div
               key={title}
-              className="card-raised p-8 group hover:border-lime/30 transition-colors duration-500"
+              className="card-raised p-7 sm:p-8 group hover:border-lime/30 transition-colors duration-500"
             >
               <div className="w-12 h-12 rounded-2xl bg-lime/10 border border-lime/20 flex items-center justify-center mb-8 group-hover:bg-lime group-hover:border-lime transition-all duration-500">
                 <Icon

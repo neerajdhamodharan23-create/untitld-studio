@@ -29,16 +29,18 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   background: #050505;
   color: #ffffff;
   font-family: var(--font-bahnschrift), "Bahnschrift", "DIN Pro", system-ui, sans-serif;
+  /* Static lime ambience as a single subtle gradient — no fixed attachment for perf */
   background-image:
-    radial-gradient(at 0% 0%, rgba(204, 255, 0, 0.08), transparent 40%),
-    radial-gradient(at 100% 100%, rgba(204, 255, 0, 0.04), transparent 50%);
-  background-attachment: fixed;
+    radial-gradient(at 0% 0%, rgba(204, 255, 0, 0.06), transparent 35%);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -48,6 +50,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::selection { background-color: var(--lime); color: #000000; }
+
+/* Hide native cursor when custom cursor is active (desktop only) */
+@media (hover: hover) and (pointer: fine) {
+  html.cursor-hidden,
+  html.cursor-hidden *,
+  html.cursor-hidden a,
+  html.cursor-hidden button,
+  html.cursor-hidden input,
+  html.cursor-hidden textarea {
+    cursor: none !important;
+  }
+}
 
 @keyframes marquee {
   from { transform: translateX(0); }
@@ -64,19 +78,22 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-bahnschrift), "Bahnschrift", system-ui, sans-serif;
 }
 
-/* Pill button base — Bravana-inspired with lime dot */
+/* Pill button — symmetric padding so the dot doesn't shift visual weight */
 .pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.625rem;
-  padding: 0.7rem 1.25rem;
+  justify-content: center;
+  gap: 0.55rem;
+  padding-inline: 1.4rem;
+  padding-block: 0.7rem;
   border-radius: 9999px;
   font-family: var(--font-bahnschrift), system-ui, sans-serif;
-  font-size: 0.78rem;
-  letter-spacing: 0.05em;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  transition: all 0.3s ease;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
   white-space: nowrap;
+  line-height: 1;
 }
 .pill-primary { background-color: var(--lime); color: #000; }
 .pill-primary:hover { background-color: #d8ff33; }
@@ -90,6 +107,7 @@ h1, h2, h3, h4, h5, h6 {
   height: 0.42rem;
   border-radius: 9999px;
   display: inline-block;
+  flex-shrink: 0;
 }
 
 .card {
@@ -100,4 +118,14 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 1.5rem;
   background-color: var(--surface-raised);
   border: 1px solid var(--white-dimmer);
+}
+
+/* Reduced motion respect */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

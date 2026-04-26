@@ -2,8 +2,8 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="px-6 lg:px-10 pb-6">
-      <div className="card p-8 lg:p-10">
+    <footer className="px-4 sm:px-6 lg:px-10 pb-6">
+      <div className="card p-7 sm:p-8 lg:p-10">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 items-end">
           {/* Left — brand & tagline */}
           <div>

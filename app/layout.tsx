@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import CustomCursor from "./components/CustomCursor";
 import "./globals.css";
 
 const rift = localFont({
@@ -46,7 +47,10 @@ export default function RootLayout({
       lang="en"
       className={`${rift.variable} ${bahnschrift.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-black text-white">{children}</body>
+      <body className="min-h-full bg-black text-white">
+        <CustomCursor />
+        {children}
+      </body>
     </html>
   );
 }
