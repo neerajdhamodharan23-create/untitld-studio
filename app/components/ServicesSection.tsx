@@ -21,7 +21,7 @@ export default function ServicesSection() {
         {/* Eyebrow */}
         <div className="flex items-center gap-2 mb-5">
           <span className="pill-dot bg-lime" />
-          <p className="text-[11px] tracking-[0.22em] uppercase text-lime font-body">
+          <p className="text-[11px] tracking-[0.22em] uppercase text-accent font-body">
             Services
           </p>
         </div>

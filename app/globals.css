@@ -29,14 +29,16 @@
     radial-gradient(circle at 25% 90%, rgba(204,255,0,0.06), transparent 50%),
     linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 50%, #080808 100%);
 
-  /* Body ambient glow — single continuous vertical flow, never breaks */
+  /* Body ambient glow — ONE smooth fall-off from top → bottom. No mid-stops
+     so the gradient never visibly "kinks" at any point on the page. */
   --body-glow: linear-gradient(
     180deg,
-    rgba(204, 255, 0, 0.06) 0%,
-    rgba(204, 255, 0, 0.02) 35%,
-    rgba(204, 255, 0, 0.04) 65%,
-    rgba(204, 255, 0, 0.02) 100%
+    rgba(204, 255, 0, 0.07) 0%,
+    rgba(204, 255, 0, 0) 100%
   );
+
+  /* Eyebrow / inline accent text — same lime in dark mode */
+  --accent: var(--lime);
 
   /* Icon tile (theme-aware) */
   --icon-tile-bg: rgba(204, 255, 0, 0.10);
@@ -56,14 +58,16 @@
   --rule: rgba(10, 10, 10, 0.08);
   --rule-strong: rgba(10, 10, 10, 0.18);
 
-  /* Slightly stronger ambient flow in light mode for visibility against cream */
+  /* Same shape — single smooth fall-off, just tuned for cream visibility */
   --body-glow: linear-gradient(
     180deg,
-    rgba(204, 255, 0, 0.16) 0%,
-    rgba(204, 255, 0, 0.06) 35%,
-    rgba(204, 255, 0, 0.10) 65%,
-    rgba(204, 255, 0, 0.06) 100%
+    rgba(204, 255, 0, 0.18) 0%,
+    rgba(204, 255, 0, 0) 100%
   );
+
+  /* Eyebrow text becomes a darker olive in light mode so it's actually
+     readable on cream (bright lime on cream has very poor contrast) */
+  --accent: #5a7700;
 
   /* Icon tiles flip to solid lime in light mode for contrast against cream */
   --icon-tile-bg: var(--lime);
@@ -85,6 +89,7 @@
   --color-lime-dim: var(--lime-dim);
   --color-lime-soft: var(--lime-soft);
   --color-lime-border: var(--lime-border);
+  --color-accent: var(--accent);
 }
 
 /* ============== BASE ============== */
