@@ -85,8 +85,8 @@ function ServiceCard({
         </div>
       )}
 
-      <div className="w-12 h-12 rounded-2xl bg-lime/10 border border-lime/20 flex items-center justify-center mb-8">
-        <Icon size={20} weight="light" className="text-lime" />
+      <div className="icon-tile w-12 h-12 rounded-2xl flex items-center justify-center mb-8">
+        <Icon size={20} weight="light" className="icon-mark" />
       </div>
 
       <h3 className="font-display text-3xl lg:text-4xl tracking-wide uppercase text-fg mb-3">

@@ -29,12 +29,23 @@
     radial-gradient(circle at 25% 90%, rgba(204,255,0,0.06), transparent 50%),
     linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 50%, #080808 100%);
 
-  /* Body ambient glow */
-  --body-glow: radial-gradient(at 0% 0%, rgba(204,255,0,0.06), transparent 35%);
+  /* Body ambient glow — single continuous vertical flow, never breaks */
+  --body-glow: linear-gradient(
+    180deg,
+    rgba(204, 255, 0, 0.06) 0%,
+    rgba(204, 255, 0, 0.02) 35%,
+    rgba(204, 255, 0, 0.04) 65%,
+    rgba(204, 255, 0, 0.02) 100%
+  );
+
+  /* Icon tile (theme-aware) */
+  --icon-tile-bg: rgba(204, 255, 0, 0.10);
+  --icon-tile-border: rgba(204, 255, 0, 0.22);
+  --icon-mark: var(--lime);
 
   /* Form input background */
   --input-bg: #050505;
-  --input-border: rgba(255,255,255,0.08);
+  --input-border: rgba(255, 255, 255, 0.08);
 }
 
 [data-theme="light"] {
@@ -45,10 +56,22 @@
   --rule: rgba(10, 10, 10, 0.08);
   --rule-strong: rgba(10, 10, 10, 0.18);
 
-  --body-glow: radial-gradient(at 0% 0%, rgba(204,255,0,0.18), transparent 35%);
+  /* Slightly stronger ambient flow in light mode for visibility against cream */
+  --body-glow: linear-gradient(
+    180deg,
+    rgba(204, 255, 0, 0.16) 0%,
+    rgba(204, 255, 0, 0.06) 35%,
+    rgba(204, 255, 0, 0.10) 65%,
+    rgba(204, 255, 0, 0.06) 100%
+  );
+
+  /* Icon tiles flip to solid lime in light mode for contrast against cream */
+  --icon-tile-bg: var(--lime);
+  --icon-tile-border: var(--lime);
+  --icon-mark: #000;
 
   --input-bg: #ffffff;
-  --input-border: rgba(10,10,10,0.10);
+  --input-border: rgba(10, 10, 10, 0.10);
 }
 
 @theme inline {
@@ -73,7 +96,10 @@ body {
   background-color: var(--bg);
   color: var(--fg);
   font-family: var(--font-bahnschrift), "Bahnschrift", "DIN Pro", system-ui, sans-serif;
+  /* Single linear gradient that stretches to fill the full body height — no tile, no break */
   background-image: var(--body-glow);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   transition: background-color 0.4s ease, color 0.4s ease;
 }
 
@@ -167,6 +193,17 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 1.5rem;
   background-color: var(--surface-2);
   border: 1px solid var(--rule);
+}
+
+/* Icon tile — theme-aware. Subtle in dark, solid lime + black mark in light. */
+.icon-tile {
+  background-color: var(--icon-tile-bg);
+  border: 1px solid var(--icon-tile-border);
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+.icon-mark {
+  color: var(--icon-mark);
+  transition: color 0.4s ease;
 }
 
 /* ============== ALWAYS-DARK MEDIA CARDS ============== */

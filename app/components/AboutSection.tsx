@@ -75,33 +75,35 @@ export default function AboutSection() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr_auto] gap-8 items-end">
+        {/* Header row: pill ↔ View Work share a baseline */}
+        <div className="flex items-center justify-between gap-4 mb-6">
           <a href="#contact" className="pill pill-secondary border-lime/30 text-lime">
             About Us
             <span className="pill-dot bg-lime" />
           </a>
-          <div className="space-y-4 max-w-3xl">
-            <p className="text-[15px] text-fg/65 font-body font-light leading-relaxed">
-              UNTITLD isn&rsquo;t just a design studio — it&rsquo;s a
-              launchpad for bold ideas and brave brands. Whether you&rsquo;re
-              just starting or scaling, we give you the structure and
-              language you need to show your best work and tell your story
-              with impact.
-            </p>
-            <p className="text-[15px] text-fg/65 font-body font-light leading-relaxed">
-              Trusted by independent creatives and growing teams alike, our
-              process makes it easier to build a lasting presence — both
-              online and off. We focus on what matters: your vision, your
-              voice, and your next move.
-            </p>
-          </div>
           <a
             href="#work"
-            className="hidden lg:flex items-center gap-2 text-[12px] tracking-widest uppercase text-fg/65 hover:text-lime transition-colors font-body whitespace-nowrap"
+            className="flex items-center gap-2 text-[12px] tracking-widest uppercase text-fg/65 hover:text-lime transition-colors font-body whitespace-nowrap"
           >
             View Work
             <ArrowUpRight size={14} />
           </a>
+        </div>
+
+        {/* Body copy — full width, left-aligned with pill above */}
+        <div className="space-y-4 max-w-3xl">
+          <p className="text-[15px] text-fg/65 font-body font-light leading-relaxed">
+            UNTITLD isn&rsquo;t just a design studio — it&rsquo;s a launchpad
+            for bold ideas and brave brands. Whether you&rsquo;re just
+            starting or scaling, we give you the structure and language you
+            need to show your best work and tell your story with impact.
+          </p>
+          <p className="text-[15px] text-fg/65 font-body font-light leading-relaxed">
+            Trusted by independent creatives and growing teams alike, our
+            process makes it easier to build a lasting presence — both
+            online and off. We focus on what matters: your vision, your
+            voice, and your next move.
+          </p>
         </div>
       </div>
     </section>

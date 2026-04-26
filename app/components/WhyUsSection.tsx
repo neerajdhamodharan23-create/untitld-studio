@@ -49,11 +49,11 @@ export default function WhyUsSection() {
               key={title}
               className="card-raised p-7 sm:p-8 group hover:border-lime/30 transition-colors duration-500"
             >
-              <div className="w-12 h-12 rounded-2xl bg-lime/10 border border-lime/20 flex items-center justify-center mb-8 group-hover:bg-lime group-hover:border-lime transition-all duration-500">
+              <div className="icon-tile w-12 h-12 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-lime group-hover:border-lime">
                 <Icon
                   size={20}
                   weight="light"
-                  className="text-lime group-hover:text-black transition-colors duration-500"
+                  className="icon-mark group-hover:text-black"
                 />
               </div>
               <h3 className="font-display text-2xl tracking-wide uppercase text-fg mb-3">

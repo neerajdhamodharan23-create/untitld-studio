@@ -5,9 +5,9 @@ import { useEffect, useRef, useState } from "react";
 const MAGNETIC_SELECTOR = "a.pill, button.pill, .magnetic";
 const INTERACTIVE_SELECTOR =
   "a, button, input, textarea, [role='button'], .interactive";
-const PROXIMITY_PX = 90;        // start pulling cursor when within this distance of edge
-const CURSOR_PULL = 0.55;       // 0 = no pull, 1 = snap to center
-const BUTTON_PULL = 0.25;       // how much the button itself drifts toward the cursor
+const PROXIMITY_PX = 40;        // tighter proximity — only pulls when close to the button
+const CURSOR_PULL = 0.18;       // gentler pull on the cursor (was 0.55)
+const BUTTON_PULL = 0.08;       // gentler drift on the button (was 0.25)
 
 type MagneticTarget = {
   el: HTMLElement;
