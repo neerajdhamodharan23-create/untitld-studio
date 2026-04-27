@@ -6,8 +6,8 @@ import { List, X } from "@phosphor-icons/react";
 import ThemeToggle from "./ThemeToggle";
 
 const links = [
-  { label: "works", href: "#work" },
   { label: "about", href: "#studio" },
+  { label: "works", href: "#work" },
   { label: "connect", href: "#contact" },
 ];
 
