@@ -1,19 +1,42 @@
+import Image from "next/image";
+
 export default function HeroSection() {
   return (
     <section id="hero" className="px-4 sm:px-6 lg:px-10 pt-1 pb-4 lg:pb-6">
-      {/* Hero card — always dark (media surface) */}
+      {/* Hero card — full-bleed photo background */}
       <div className="media-card relative overflow-hidden rounded-[1.5rem] lg:rounded-[2rem] min-h-[78dvh] flex flex-col">
-        {/* Decorative slash — small, no blur */}
-        <div className="absolute -right-10 top-12 lg:right-10 lg:top-10 opacity-[0.05] pointer-events-none select-none">
-          <svg viewBox="0 0 26.03 32" className="w-[320px] lg:w-[460px] h-auto" fill="#ccff00">
-            <polygon points="6.99 32 0 32 19.04 0 26.03 0 6.99 32" />
-            <path d="M20.15,32c-1.02,0-1.9-.36-2.63-1.09-.73-.73-1.09-1.61-1.09-2.63s.36-1.88,1.09-2.61c.73-.72,1.61-1.09,2.63-1.09s1.86.36,2.61,1.09,1.12,1.59,1.12,2.61c0,.68-.17,1.31-.52,1.87-.35.56-.8,1.01-1.36,1.35-.56.34-1.17.5-1.85.5Z" />
-          </svg>
-        </div>
+        {/* Background photo */}
+        <Image
+          src="/hero.png"
+          alt=""
+          fill
+          priority
+          sizes="(max-width: 1024px) 100vw, 1280px"
+          className="object-cover select-none"
+          style={{ objectPosition: "center 30%" }}
+        />
+
+        {/* Bottom-left dark fade — keeps the big headline readable on warm tones */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.25) 40%, transparent 65%)",
+          }}
+        />
+
+        {/* Subtle right-side darkening for the description block readability */}
+        <div
+          className="absolute inset-y-0 right-0 w-1/2 pointer-events-none hidden lg:block"
+          style={{
+            background:
+              "linear-gradient(to left, rgba(0,0,0,0.40) 0%, transparent 100%)",
+          }}
+        />
 
         {/* Top-right description */}
         <div className="relative z-10 self-end mt-10 lg:mt-16 mr-5 sm:mr-8 lg:mr-14 max-w-md fade-in delay-100">
-          <p className="text-sm lg:text-base text-white/70 font-body font-light leading-relaxed text-right mb-5 sm:mb-6">
+          <p className="text-sm lg:text-base text-white/90 font-body font-light leading-relaxed text-right mb-5 sm:mb-6">
             UNTITLD helps you shape brand identities and digital presences,
             built for studios and founders ready to lead.
           </p>

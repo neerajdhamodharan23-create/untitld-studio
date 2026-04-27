@@ -6,10 +6,9 @@ import { List, X } from "@phosphor-icons/react";
 import ThemeToggle from "./ThemeToggle";
 
 const links = [
-  { label: "Work", href: "#work" },
-  { label: "Services", href: "#services" },
-  { label: "Studio", href: "#studio" },
-  { label: "Contact", href: "#contact" },
+  { label: "works", href: "#work" },
+  { label: "about", href: "#studio" },
+  { label: "connect", href: "#contact" },
 ];
 
 export default function Nav() {
