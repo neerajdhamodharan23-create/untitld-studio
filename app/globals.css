@@ -179,6 +179,19 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.08em;
   gap: 0.45rem;
 }
+
+/* Featured badge — soft gradient pill, like Bravana's red one but lime-toned */
+.pill-featured {
+  background: linear-gradient(135deg, rgba(204,255,0,0.35) 0%, rgba(204,255,0,0.10) 100%);
+  border: 1px solid rgba(204,255,0,0.45);
+  color: #ccff00;
+  box-shadow: 0 0 0 1px rgba(204,255,0,0.06), 0 4px 14px -6px rgba(204,255,0,0.35);
+}
+[data-theme="light"] .pill-featured {
+  background: linear-gradient(135deg, rgba(204,255,0,0.85) 0%, rgba(204,255,0,0.45) 100%);
+  border-color: rgba(204,255,0,0.7);
+  color: #1a1a1a;
+}
 .pill-dot {
   width: 0.45rem;
   height: 0.45rem;
@@ -198,6 +211,24 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 1.5rem;
   background-color: var(--surface-2);
   border: 1px solid var(--rule);
+}
+
+/* Animated nav-link underline — grows from left on hover */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  height: 1.5px;
+  width: 100%;
+  background-color: var(--lime);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  transform: scaleX(1);
 }
 
 /* Icon tile — theme-aware. Subtle in dark, solid lime + black mark in light. */

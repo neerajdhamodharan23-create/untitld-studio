@@ -68,7 +68,7 @@ export default function Nav() {
               <a
                 key={item.label}
                 href={item.href}
-                className="text-[12px] tracking-wide text-fg/65 hover:text-lime transition-colors duration-300 font-body"
+                className="nav-link text-[12px] tracking-wide text-fg/65 hover:text-lime transition-colors duration-300 font-body relative"
               >
                 {item.label}
               </a>

@@ -83,7 +83,7 @@ function ServiceCard({
     >
       {featured && (
         <div className="absolute right-7 top-7">
-          <span className="pill pill-sm bg-lime/15 text-lime border border-lime/30">
+          <span className="pill pill-sm pill-featured">
             <span className="pill-dot bg-lime" />
             Most Popular
           </span>

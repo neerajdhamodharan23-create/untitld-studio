@@ -73,9 +73,7 @@ function ProjectCard({ project }: { project: Project }) {
           {project.featured ? (
             <span
               className={`pill pill-sm ${
-                isLight
-                  ? "bg-black text-white"
-                  : "bg-lime/15 text-lime border border-lime/30"
+                isLight ? "bg-black text-white" : "pill-featured"
               }`}
             >
               <span className="pill-dot bg-lime" />

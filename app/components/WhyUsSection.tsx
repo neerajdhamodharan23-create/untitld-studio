@@ -1,21 +1,25 @@
-import { Stack, Lightning, Sparkle } from "@phosphor-icons/react/dist/ssr";
 import Reveal from "./Reveal";
+import {
+  BoldGridIllustration,
+  ScaleStackIllustration,
+  SharpDeliveryIllustration,
+} from "./CardIllustrations";
 
 const features = [
   {
-    icon: Sparkle,
+    Illustration: BoldGridIllustration,
     title: "Bold & purposeful",
     description:
       "Our identities make a statement. Every line, mark, and detail is chosen with intention to create brands that feel inevitable.",
   },
   {
-    icon: Stack,
+    Illustration: ScaleStackIllustration,
     title: "Built to scale",
     description:
       "We deliver complete systems, not single artifacts. Every brand we make is structured to grow across products, channels, and contexts.",
   },
   {
-    icon: Lightning,
+    Illustration: SharpDeliveryIllustration,
     title: "Sharp delivery",
     description:
       "We move efficiently without compromising quality. Tight feedback loops, fixed timelines, and ruthless attention to detail.",
@@ -51,15 +55,11 @@ export default function WhyUsSection() {
         </Reveal>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
-          {features.map(({ icon: Icon, title, description }, i) => (
+          {features.map(({ Illustration, title, description }, i) => (
             <Reveal key={title} delay={250 + i * 110}>
-              <div className="card-raised p-7 sm:p-8 group hover:-translate-y-1 hover:border-lime/30 transition-all duration-500">
-                <div className="icon-tile w-12 h-12 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-lime group-hover:border-lime">
-                  <Icon
-                    size={20}
-                    weight="light"
-                    className="icon-mark group-hover:text-black"
-                  />
+              <div className="card-raised p-7 sm:p-8 hover:-translate-y-1 hover:border-lime/30 transition-all duration-500">
+                <div className="mb-7">
+                  <Illustration />
                 </div>
                 <h3 className="font-display text-2xl tracking-wide uppercase text-fg mb-3">
                   {title}
