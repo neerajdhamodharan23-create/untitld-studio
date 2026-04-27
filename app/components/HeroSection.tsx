@@ -3,8 +3,8 @@ import Image from "next/image";
 export default function HeroSection() {
   return (
     <section id="hero" className="px-4 sm:px-6 lg:px-10 pt-1 pb-4 lg:pb-6">
-      {/* Hero card — full-bleed photo background */}
-      <div className="media-card relative overflow-hidden rounded-[1.5rem] lg:rounded-[2rem] min-h-[78dvh] flex flex-col">
+      {/* Hero card — full-bleed photo background, near full-viewport height */}
+      <div className="media-card relative overflow-hidden rounded-[1.5rem] lg:rounded-[2rem] min-h-[calc(100dvh-6rem)] flex flex-col">
         {/* Background photo */}
         <Image
           src="/hero.png"
@@ -13,7 +13,7 @@ export default function HeroSection() {
           priority
           sizes="(max-width: 1024px) 100vw, 1280px"
           className="object-cover select-none"
-          style={{ objectPosition: "center 18%" }}
+          style={{ objectPosition: "center 8%" }}
         />
 
         {/* Bottom-left dark fade — keeps the big headline readable on warm tones */}
