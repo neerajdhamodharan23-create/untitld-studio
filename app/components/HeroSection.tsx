@@ -13,7 +13,7 @@ export default function HeroSection() {
           priority
           sizes="(max-width: 1024px) 100vw, 1280px"
           className="object-cover select-none"
-          style={{ objectPosition: "center 0%" }}
+          style={{ objectPosition: "center 10%" }}
         />
 
         {/* Bottom-left dark fade — keeps the big headline readable on warm tones */}
