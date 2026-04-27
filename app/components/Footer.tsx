@@ -1,8 +1,10 @@
 import Image from "next/image";
+import Reveal from "./Reveal";
 
 export default function Footer() {
   return (
     <footer className="px-4 sm:px-6 lg:px-10 pb-6">
+      <Reveal>
       <div className="card p-7 sm:p-8 lg:p-10 border border-rule">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 items-end">
           <div>
@@ -52,6 +54,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
+      </Reveal>
     </footer>
   );
 }

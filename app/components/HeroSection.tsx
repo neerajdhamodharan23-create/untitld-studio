@@ -1,22 +1,51 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useRef } from "react";
 
 export default function HeroSection() {
+  const imageRef = useRef<HTMLImageElement>(null);
+
+  // Subtle parallax — image translates up as you scroll past the hero.
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let raf = 0;
+    let last = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const y = Math.min(window.scrollY, 600);
+        if (Math.abs(y - last) < 1) return;
+        last = y;
+        if (imageRef.current) {
+          imageRef.current.style.transform = `scale(1.05) translateY(${y * 0.18}px)`;
+        }
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
   return (
     <section id="hero" className="px-4 sm:px-6 lg:px-10 pt-1 pb-4 lg:pb-6">
-      {/* Hero card — full-bleed photo background, ~84dvh tall */}
       <div className="media-card relative overflow-hidden rounded-[1.5rem] lg:rounded-[2rem] min-h-[84dvh] flex flex-col">
-        {/* Background photo */}
-        <Image
-          src="/hero.png"
-          alt=""
-          fill
-          priority
-          sizes="(max-width: 1024px) 100vw, 1280px"
-          className="object-cover select-none"
-          style={{ objectPosition: "center 10%" }}
-        />
+        {/* Background photo with scale-in entrance + parallax on scroll */}
+        <div className="absolute inset-0 hero-image-wrap">
+          <Image
+            ref={imageRef as never}
+            src="/hero.png"
+            alt=""
+            fill
+            priority
+            sizes="(max-width: 1024px) 100vw, 1280px"
+            className="object-cover select-none"
+            style={{ objectPosition: "center 10%", transform: "scale(1.05)" }}
+          />
+        </div>
 
-        {/* Bottom-left dark fade — keeps the big headline readable on warm tones */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -25,7 +54,6 @@ export default function HeroSection() {
           }}
         />
 
-        {/* Subtle right-side darkening for the description block readability */}
         <div
           className="absolute inset-y-0 right-0 w-1/2 pointer-events-none hidden lg:block"
           style={{
@@ -48,26 +76,66 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Bottom-left massive headline */}
-        <div className="relative z-10 mt-auto px-6 sm:px-8 lg:px-14 pb-8 lg:pb-14 fade-in delay-200">
+        {/* Bottom-left massive headline — word stagger */}
+        <div className="relative z-10 mt-auto px-6 sm:px-8 lg:px-14 pb-8 lg:pb-14">
           <h1 className="font-display uppercase tracking-wide text-[clamp(3rem,11vw,10rem)] leading-[0.85] text-white">
-            We shape
+            <span className="word-rise" style={{ animationDelay: "0.20s" }}>
+              We
+            </span>{" "}
+            <span className="word-rise" style={{ animationDelay: "0.30s" }}>
+              shape
+            </span>
             <br />
-            <span className="text-lime">brand</span> presence.
+            <span className="word-rise text-lime" style={{ animationDelay: "0.40s" }}>
+              brand
+            </span>{" "}
+            <span className="word-rise" style={{ animationDelay: "0.50s" }}>
+              presence.
+            </span>
           </h1>
         </div>
       </div>
 
       <style>{`
+        .hero-image-wrap img {
+          opacity: 0;
+          animation: heroImageIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.05s forwards;
+          will-change: transform, opacity;
+        }
+        @keyframes heroImageIn {
+          0%   { opacity: 0; transform: scale(1.12) translateY(0); }
+          100% { opacity: 1; transform: scale(1.05) translateY(0); }
+        }
+
         .fade-in {
           opacity: 0;
           transform: translateY(16px);
           animation: heroFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-        .delay-100 { animation-delay: 0.15s; }
-        .delay-200 { animation-delay: 0.3s; }
+        .delay-100 { animation-delay: 0.55s; }
         @keyframes heroFade {
           to { opacity: 1; transform: translateY(0); }
+        }
+
+        .word-rise {
+          display: inline-block;
+          opacity: 0;
+          transform: translateY(40%);
+          animation: wordRise 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          will-change: transform, opacity;
+        }
+        @keyframes wordRise {
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .hero-image-wrap img,
+          .fade-in,
+          .word-rise {
+            animation: none !important;
+            opacity: 1 !important;
+            transform: none !important;
+          }
         }
       `}</style>
     </section>

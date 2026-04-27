@@ -1,4 +1,5 @@
 import { Fingerprint, Monitor } from "@phosphor-icons/react/dist/ssr";
+import Reveal from "./Reveal";
 
 const brand = [
   "Mark & logotype",
@@ -18,37 +19,41 @@ export default function ServicesSection() {
   return (
     <section id="services" className="px-4 sm:px-6 lg:px-10 py-16 sm:py-20 lg:py-28">
       <div className="max-w-7xl mx-auto">
-        {/* Eyebrow */}
-        <div className="flex items-center gap-2 mb-5">
-          <span className="pill-dot bg-lime" />
-          <p className="text-[11px] tracking-[0.22em] uppercase text-accent font-body">
-            Services
-          </p>
-        </div>
+        <Reveal>
+          <div className="flex items-center gap-2 mb-5">
+            <span className="pill-dot bg-lime" />
+            <p className="text-[11px] tracking-[0.22em] uppercase text-accent font-body">
+              Services
+            </p>
+          </div>
+        </Reveal>
 
-        <h2 className="font-display uppercase tracking-wide text-[clamp(2.6rem,6vw,5rem)] leading-[0.95] text-fg mb-14 max-w-4xl">
-          What we do <span className="text-lime">best.</span>
-        </h2>
+        <Reveal delay={80}>
+          <h2 className="font-display uppercase tracking-wide text-[clamp(2.6rem,6vw,5rem)] leading-[0.95] text-fg mb-14 max-w-4xl">
+            What we do <span className="text-lime">best.</span>
+          </h2>
+        </Reveal>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5">
-          {/* Brand Identity */}
-          <ServiceCard
-            icon={Fingerprint}
-            title="Brand Identity"
-            description="We build identities that hold their own in any context — from business cards to billboards. Cohesive, purposeful, and made to last."
-            services={brand}
-            price="$4,800"
-            featured
-          />
-
-          {/* Website Design */}
-          <ServiceCard
-            icon={Monitor}
-            title="Website Design"
-            description="Websites that turn attention into action. We design systems, not pages — every touchpoint communicates the same standard of quality."
-            services={web}
-            price="$6,500"
-          />
+          <Reveal delay={180}>
+            <ServiceCard
+              icon={Fingerprint}
+              title="Brand Identity"
+              description="We build identities that hold their own in any context — from business cards to billboards. Cohesive, purposeful, and made to last."
+              services={brand}
+              price="$4,800"
+              featured
+            />
+          </Reveal>
+          <Reveal delay={300}>
+            <ServiceCard
+              icon={Monitor}
+              title="Website Design"
+              description="Websites that turn attention into action. We design systems, not pages — every touchpoint communicates the same standard of quality."
+              services={web}
+              price="$6,500"
+            />
+          </Reveal>
         </div>
       </div>
     </section>
@@ -72,7 +77,7 @@ function ServiceCard({
 }) {
   return (
     <div
-      className={`card-raised p-7 sm:p-8 lg:p-10 relative overflow-hidden ${
+      className={`card-raised p-7 sm:p-8 lg:p-10 relative overflow-hidden hover:-translate-y-1 hover:border-lime/30 transition-all duration-500 ${
         featured ? "border-lime/30" : ""
       }`}
     >

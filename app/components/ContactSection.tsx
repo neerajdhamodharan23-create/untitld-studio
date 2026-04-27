@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Quotes } from "@phosphor-icons/react";
+import Reveal from "./Reveal";
 
 export default function ContactSection() {
   const [form, setForm] = useState({
@@ -23,16 +24,19 @@ export default function ContactSection() {
   return (
     <section id="contact" className="px-4 sm:px-6 lg:px-10 py-16 sm:py-20 lg:py-28">
       <div className="max-w-7xl mx-auto">
-        <div className="flex items-center gap-2 mb-5">
-          <span className="pill-dot bg-lime" />
-          <p className="text-[11px] tracking-[0.22em] uppercase text-accent font-body">
-            Contact
-          </p>
-        </div>
+        <Reveal>
+          <div className="flex items-center gap-2 mb-5">
+            <span className="pill-dot bg-lime" />
+            <p className="text-[11px] tracking-[0.22em] uppercase text-accent font-body">
+              Contact
+            </p>
+          </div>
+        </Reveal>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-6">
           {/* LEFT — heading + quote */}
-          <div className="card p-7 sm:p-8 lg:p-12 flex flex-col border border-rule">
+          <Reveal delay={100}>
+            <div className="card p-7 sm:p-8 lg:p-12 flex flex-col border border-rule">
             <h2 className="font-display uppercase tracking-wide text-[clamp(3rem,7vw,6rem)] leading-[0.9] text-fg mb-6">
               Contact.
             </h2>
@@ -61,10 +65,12 @@ export default function ContactSection() {
                 </div>
               </div>
             </div>
-          </div>
+            </div>
+          </Reveal>
 
           {/* RIGHT — form */}
-          <div className="card-raised p-7 sm:p-8 lg:p-10">
+          <Reveal delay={200}>
+            <div className="card-raised p-7 sm:p-8 lg:p-10">
             {sent ? (
               <div className="h-full flex flex-col items-center justify-center text-center py-20">
                 <div className="w-14 h-14 rounded-full bg-lime/15 border border-lime/30 flex items-center justify-center mb-6">
@@ -128,7 +134,8 @@ export default function ContactSection() {
                 </button>
               </form>
             )}
-          </div>
+            </div>
+          </Reveal>
         </div>
       </div>
 

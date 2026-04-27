@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ArrowUpRight } from "@phosphor-icons/react";
+import Reveal from "./Reveal";
 
 type Project = {
   name: string;
@@ -129,38 +130,46 @@ export default function WorkSection() {
     <section id="work" className="px-4 sm:px-6 lg:px-10 py-16 sm:py-20 lg:py-28">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-end justify-between mb-10 sm:mb-12 flex-wrap gap-6">
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <span className="pill-dot bg-lime" />
-              <p className="text-[11px] tracking-[0.22em] uppercase text-accent font-body">
-                Selected Works
+          <Reveal>
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <span className="pill-dot bg-lime" />
+                <p className="text-[11px] tracking-[0.22em] uppercase text-accent font-body">
+                  Selected Works
+                </p>
+              </div>
+              <h2 className="font-display uppercase tracking-wide text-[clamp(2.6rem,7vw,6rem)] leading-[0.92] text-fg">
+                Works.
+              </h2>
+              <p className="text-sm text-fg/55 font-body font-light mt-3 max-w-md">
+                A curated collection of bold brands and websites — built to
+                inspire, connect, and perform.
               </p>
             </div>
-            <h2 className="font-display uppercase tracking-wide text-[clamp(2.6rem,7vw,6rem)] leading-[0.92] text-fg">
-              Works.
-            </h2>
-            <p className="text-sm text-fg/55 font-body font-light mt-3 max-w-md">
-              A curated collection of bold brands and websites — built to
-              inspire, connect, and perform.
+          </Reveal>
+          <Reveal delay={120}>
+            <p className="text-[11px] tracking-widest uppercase text-fg/45 font-body">
+              2020 — 2025
             </p>
-          </div>
-          <p className="text-[11px] tracking-widest uppercase text-fg/45 font-body">
-            2020 — 2025
-          </p>
+          </Reveal>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-          {projects.map((project) => (
-            <ProjectCard key={project.name} project={project} />
+          {projects.map((project, i) => (
+            <Reveal key={project.name} delay={i * 90}>
+              <ProjectCard project={project} />
+            </Reveal>
           ))}
         </div>
 
-        <div className="flex justify-center mt-10 sm:mt-12">
-          <a href="#contact" className="pill pill-secondary">
-            View All Projects
-            <span className="pill-dot bg-lime" />
-          </a>
-        </div>
+        <Reveal delay={250}>
+          <div className="flex justify-center mt-10 sm:mt-12">
+            <a href="#contact" className="pill pill-secondary">
+              View All Projects
+              <span className="pill-dot bg-lime" />
+            </a>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
