@@ -1,12 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useRef } from "react";
 
 export default function HeroSection() {
-  const imageRef = useRef<HTMLImageElement>(null);
+  const mediaRef = useRef<HTMLVideoElement>(null);
 
-  // Subtle parallax — image translates up as you scroll past the hero.
+  // Subtle parallax — video translates up as you scroll past the hero.
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let raf = 0;
@@ -17,8 +16,8 @@ export default function HeroSection() {
         const y = Math.min(window.scrollY, 600);
         if (Math.abs(y - last) < 1) return;
         last = y;
-        if (imageRef.current) {
-          imageRef.current.style.transform = `scale(1.05) translateY(${y * 0.18}px)`;
+        if (mediaRef.current) {
+          mediaRef.current.style.transform = `scale(1.05) translateY(${y * 0.18}px)`;
         }
       });
     };
@@ -29,23 +28,44 @@ export default function HeroSection() {
     };
   }, []);
 
+  // Pause the video when it's offscreen — saves battery and CPU on long pages.
+  useEffect(() => {
+    const el = mediaRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) el.play().catch(() => {});
+          else el.pause();
+        });
+      },
+      { threshold: 0.1 },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
   return (
     <section id="hero" className="px-4 sm:px-6 lg:px-10 pt-1 pb-4 lg:pb-6">
       <div className="media-card relative overflow-hidden rounded-[1.5rem] lg:rounded-[2rem] min-h-[84dvh] flex flex-col">
-        {/* Background photo with scale-in entrance + parallax on scroll */}
+        {/* Background video with scale-in entrance + parallax on scroll */}
         <div className="absolute inset-0 hero-image-wrap">
-          <Image
-            ref={imageRef as never}
-            src="/hero.png"
-            alt=""
-            fill
-            priority
-            sizes="(max-width: 1024px) 100vw, 1280px"
-            className="object-cover select-none"
-            style={{ objectPosition: "center 10%", transform: "scale(1.05)" }}
+          <video
+            ref={mediaRef}
+            src="/hero-video.mp4"
+            poster="/hero-poster.jpg"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            aria-hidden
+            className="w-full h-full object-cover select-none pointer-events-none"
+            style={{ objectPosition: "center", transform: "scale(1.05)" }}
           />
         </div>
 
+        {/* Bottom-rising dark fade — keeps the headline crisp */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -54,6 +74,7 @@ export default function HeroSection() {
           }}
         />
 
+        {/* Soft right-side darkening for the description block */}
         <div
           className="absolute inset-y-0 right-0 w-1/2 pointer-events-none hidden lg:block"
           style={{
@@ -97,7 +118,7 @@ export default function HeroSection() {
       </div>
 
       <style>{`
-        .hero-image-wrap img {
+        .hero-image-wrap video {
           opacity: 0;
           animation: heroImageIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.05s forwards;
           will-change: transform, opacity;
@@ -129,7 +150,7 @@ export default function HeroSection() {
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .hero-image-wrap img,
+          .hero-image-wrap video,
           .fade-in,
           .word-rise {
             animation: none !important;
