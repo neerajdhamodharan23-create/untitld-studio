@@ -1,73 +1,49 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight } from "@phosphor-icons/react";
 import Reveal from "./Reveal";
-
-type Project = {
-  name: string;
-  type: string;
-  featured: boolean;
-  bgGradient: string;
-  light?: boolean;
-};
-
-const projects: Project[] = [
-  {
-    name: "Verd Capital",
-    type: "Brand Identity",
-    featured: true,
-    bgGradient:
-      "radial-gradient(circle at 90% 10%, rgba(204,255,0,0.18), transparent 55%), linear-gradient(135deg, #0d1d0d, #243024)",
-  },
-  {
-    name: "Signal Spark",
-    type: "Branding Design",
-    featured: true,
-    bgGradient:
-      "radial-gradient(circle at 10% 90%, rgba(255,255,255,0.07), transparent 55%), linear-gradient(135deg, #1a1a1a, #000000)",
-  },
-  {
-    name: "Lumenhaus",
-    type: "Web Development",
-    featured: false,
-    bgGradient:
-      "radial-gradient(circle at 90% 90%, rgba(245,158,11,0.16), transparent 55%), linear-gradient(135deg, #1a1410, #0f0a05)",
-  },
-  {
-    name: "Drift Bloom",
-    type: "Branding Design",
-    featured: false,
-    bgGradient: "linear-gradient(135deg, #ccff00, #b3e600)",
-    light: true,
-  },
-  {
-    name: "Krane Supply",
-    type: "Brand System",
-    featured: false,
-    bgGradient:
-      "radial-gradient(circle at 10% 10%, rgba(34,211,238,0.14), transparent 55%), linear-gradient(135deg, #101a1f, #050a0d)",
-  },
-  {
-    name: "Auris",
-    type: "Identity + Web",
-    featured: true,
-    bgGradient:
-      "radial-gradient(circle at 75% 25%, rgba(244,63,94,0.16), transparent 55%), linear-gradient(135deg, #1f1414, #0d0808)",
-  },
-];
+import { projects, type Project } from "../lib/projects";
 
 function ProjectCard({ project }: { project: Project }) {
   const [hovered, setHovered] = useState(false);
-  const isLight = project.light;
+  const isLight = project.cardLight;
+  const hasThumbnail = !!project.thumbnail;
+  const isClickable = project.gallery.length > 0;
 
-  return (
-    <div
-      className="relative overflow-hidden rounded-[1.5rem] transition-transform duration-500 hover:scale-[1.01]"
-      style={{ background: project.bgGradient, willChange: "transform" }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
+  const sharedClassName = `block relative overflow-hidden rounded-[1.5rem] transition-transform duration-500 ${
+    isClickable ? "hover:scale-[1.01]" : ""
+  }`;
+  const sharedStyle = hasThumbnail
+    ? undefined
+    : { background: project.cardBg, willChange: "transform" as const };
+
+  const inner = (
+    <>
+      {/* Photo thumbnail (if provided) */}
+      {hasThumbnail && (
+        <div className="absolute inset-0">
+          <Image
+            src={project.thumbnail}
+            alt={project.name}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover transition-transform duration-700 ease-out"
+            style={{ transform: hovered ? "scale(1.04)" : "scale(1)" }}
+          />
+          {/* Subtle dark fade at the bottom for the title legibility */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.0) 45%)",
+            }}
+          />
+        </div>
+      )}
+
       <div className="relative h-[260px] sm:h-[280px] lg:h-[320px] flex flex-col justify-between p-6 sm:p-7">
         <div className="relative z-10 flex items-start justify-between">
           {project.featured ? (
@@ -93,7 +69,8 @@ function ProjectCard({ project }: { project: Project }) {
           </div>
         </div>
 
-        {!isLight && (
+        {/* Decorative slash mark for non-thumbnail dark cards */}
+        {!isLight && !hasThumbnail && (
           <div className="absolute right-5 top-1/2 -translate-y-1/2 opacity-[0.04] pointer-events-none">
             <svg viewBox="0 0 26.03 32" fill="#fff" className="w-24 sm:w-32 h-auto">
               <polygon points="6.99 32 0 32 19.04 0 26.03 0 6.99 32" />
@@ -112,13 +89,37 @@ function ProjectCard({ project }: { project: Project }) {
           </h3>
           <p
             className={`text-[11px] sm:text-[12px] tracking-widest uppercase font-body font-light ${
-              isLight ? "text-black/60" : "text-white/40"
+              isLight ? "text-black/60" : "text-white/60"
             }`}
           >
             {project.type}
           </p>
         </div>
       </div>
+    </>
+  );
+
+  if (isClickable) {
+    return (
+      <Link
+        href={`/work/${project.slug}`}
+        className={sharedClassName}
+        style={sharedStyle}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+      >
+        {inner}
+      </Link>
+    );
+  }
+  return (
+    <div
+      className={sharedClassName}
+      style={sharedStyle}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {inner}
     </div>
   );
 }
@@ -154,7 +155,7 @@ export default function WorkSection() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {projects.map((project, i) => (
-            <Reveal key={project.name} delay={i * 90}>
+            <Reveal key={project.slug} delay={i * 90}>
               <ProjectCard project={project} />
             </Reveal>
           ))}
